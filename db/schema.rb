@@ -10,8 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_02_154046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "mangas", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.integer "volume"
+    t.integer "chapter"
+    t.string "category"
+    t.text "overview"
+    t.string "image_url"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "manga_id", null: false
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manga_id"], name: "index_messages_on_manga_id"
+  end
+
+  add_foreign_key "messages", "mangas"
 end

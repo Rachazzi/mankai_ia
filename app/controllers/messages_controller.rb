@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
-
   def index
     @messages = Message.all
+
   end
 
 
@@ -38,5 +38,4 @@ private
   def instructions
     [SYSTEM_PROMPT, manga_context].compact.join("\n\n")
   end
-
 end

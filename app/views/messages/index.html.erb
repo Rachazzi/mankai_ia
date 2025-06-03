@@ -1,0 +1,8 @@
+<h1><%= @manga.name %></h1>
+
+<% @manga.messages.each do |message| %>
+  <p>
+    <strong><%= message.role %></strong>
+    <%= raw(render_markdown(message.content)) %>
+  </p>
+<% end %>

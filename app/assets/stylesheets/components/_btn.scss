@@ -1,0 +1,16 @@
+
+//Bouton stylisée pour classe perso bootstrap
+.btn-magic {
+  @extend .btn;
+  @extend .btn-primary;
+
+  background-color: #8e44ad; // violet personnalisé
+  border-radius: 8px;
+  border-color: #732d91;
+  font-size: 1rem;
+
+  &:hover {
+    background-color: #c48edb;
+    border-color: #c48edb;
+  }
+}

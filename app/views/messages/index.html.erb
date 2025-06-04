@@ -1,11 +1,12 @@
 
 <div class="return-messages-container p-5">
   <h1 class="text-center">Message</h1>
-<% @messages.each do |message| %>
 
+  <%= link_to "back to home", root_path, class: "btn btn-magic text-center" %>
+  <% @messages.each do |message| %>
     <ul class="list-unstyled p-1">
       <span class="purple-text"><%= message.role %></span>
       <li class="mt-3"><%= message.content %></li>
-  </ul>
-<% end %>
+    </ul>
+  <% end %>
 </div>

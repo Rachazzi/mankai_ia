@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
 
 
   def new
-    @manga = Manga.find(params[:manga_id])
     @message = Message.new
   end
 
@@ -17,13 +16,13 @@ class MessagesController < ApplicationController
   \nAnswer concisely in markdown."
 
   def create
-    @manga = Manga.find(params[:manga_id])
-    @message = Message.new(role: "user", content: params[:message][:question], manga: @manga)
+    @manga = Manga.create()
+    @message = Message.new(role: "user", content: params[:message][:content], manga: @manga)
     if @message.save
       @chat = RubyLLM.chat
-      response = @chat.with_instructions(SYSTEM_PROMPT).ask(@message.question)
-      Message.create(role: "specialist", content: response.content, manga: @manga)
-      redirect_to manga_messages_path(@manga)
+      response = @chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
+      Message.create(role: "assistant", content: response.content, manga: @manga)
+      redirect_to messages_path()
     else
       render :new
     end

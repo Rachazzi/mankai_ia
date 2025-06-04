@@ -29,16 +29,7 @@ class MangasController < ApplicationController
     private
 
     def manga_params
-      parzms.require(:manga).permit(:title, :description, :author)
+      params.require(:manga).permit(:title, :overview, :author)
     end
-  end
-
-
-
-
-
-
-
-
 
 end

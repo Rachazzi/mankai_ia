@@ -5,7 +5,7 @@
 <hr>
 <% @messages.each do |message| %>
   <p>
-    <strong><%= message.role.capitalize %></strong>
+    <span class="purple-text"><%= message.role %></span>
   </p>
   <%= markdown(message.content) %>
   <%= link_to 'Voir la réponse', message_path(message) %>

@@ -1,0 +1,17 @@
+.form-style {
+  background-color: $surface;
+  color: $on-surface;
+
+  &:focus {
+    background-color: $surface !important;
+    color: $on-surface !important;
+    border-color: $background !important;
+    box-shadow: 0 0 0 0.2rem $secondary-purple;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $on-surface;
+    opacity: 0.8;
+}
+}

@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon navbar-style">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "https://ik.imagekit.io/oc2ow6e7b/photobook_1623176.png?updatedAt=1749044474941" %>
@@ -12,6 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+
             <%= link_to "Home", "/", class: "nav-link" %>
           </li>
           <li class="nav-item">

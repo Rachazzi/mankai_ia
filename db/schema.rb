@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_03_132629) do
+
+ActiveRecord::Schema[7.1].define(version: 2025_06_04_135230) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_132629) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "response"
     t.index ["manga_id"], name: "index_messages_on_manga_id"
   end
 

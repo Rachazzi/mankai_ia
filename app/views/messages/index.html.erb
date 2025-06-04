@@ -5,10 +5,10 @@
 <hr>
 <% @messages.each do |message| %>
   <p>
-    <strong><%= message.role %></strong>
+    <span class="purple-text"><%= message.role %></span>
   </p>
-  <%= message.content %>
+  <%= markdown(message.content) %>
+  <%= link_to 'Voir la réponse', message_path(message) %>
+  <hr>
 <% end %>
-
-
 </div>

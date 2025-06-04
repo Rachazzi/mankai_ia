@@ -1,12 +1,14 @@
+<div class="container">
+<h1>Tous les messages</h1>
 
-<div class="return-messages-container p-5">
-  <h1 class="text-center">Message</h1>
-
-  <%= link_to "back to home", root_path, class: "btn btn-magic text-center" %>
-  <% @messages.each do |message| %>
-    <ul class="list-unstyled p-1">
-      <span class="purple-text"><%= message.role %></span>
-      <li class="mt-3"><%= message.content %></li>
-    </ul>
-  <% end %>
+<%= link_to "back to home", root_path, class: "btn btn-magic text-center" %>
+<hr>
+<% @messages.each do |message| %>
+  <p>
+    <span class="purple-text"><%= message.role %></span>
+  </p>
+  <%= markdown(message.content) %>
+  <%= link_to 'Voir la réponse', message_path(message) %>
+  <hr>
+<% end %>
 </div>

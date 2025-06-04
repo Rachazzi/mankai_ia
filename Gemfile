@@ -52,6 +52,7 @@ gem "sassc-rails"
 gem 'ruby_llm'
 gem "devise"
 gem "faker"
+gem 'redcarpet'
 
 group :development, :test do
   gem "dotenv-rails"

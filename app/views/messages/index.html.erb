@@ -1,8 +1,14 @@
-<h1>Message</h1>
+<div class="container">
+<h1>Tous les messages</h1>
 
+<%= link_to "back to home", root_path, class: "btn btn-magic text-center" %>
+<hr>
 <% @messages.each do |message| %>
   <p>
     <strong><%= message.role %></strong>
   </p>
   <%= message.content %>
 <% end %>
+
+
+</div>

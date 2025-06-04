@@ -1,0 +1,16 @@
+.purple-text {
+  color: $secondary-purple;
+  font-size: 1.3rem;
+}
+
+.on-surface-text {
+  color: $on-surface;
+}
+
+.nav-link.on-surface-text {
+  color: $on-surface;
+
+  &:hover {
+    color: $secondary-purple; // couleur au survol
+  }
+}

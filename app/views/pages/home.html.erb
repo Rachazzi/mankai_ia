@@ -1,13 +1,18 @@
 
 <div class="home-container">
-<h1 class = "text-center p-3">Bienvenue sur Mankai</h1>
+<br>
+<br>
+<br>
 <div class="container text-center p-5">
+  <h1 class = "text-center p-3">WELCOME TO MANKAI</h1>
+  <br>
   <%# lien pour envoyer l'user vers le chat %>
-  <%= link_to "Start a new chat ✨", new_message_path(@manga), class: "btn btn-magic text-center" %>
-
-</div>
-<div class="container text-center p-5">
+  <div>
+  <%= link_to "Start a new chat ✨", new_message_path(@manga), class: "btn btn-magic btn-lg text-center m-3" %>
   <%# lien pour envoyer l'user vers tous les messages %>
-<%= link_to "Afficher tous les messages", messages_path, class: "btn btn-magic text-center" %>
+  <%= link_to "Show all messages", messages_path, class: "btn btn-magic btn-lg text-center m-3" %>
+  </div>
 </div>
-</div>
+  <br>
+  <br>
+  <img src="https://ik.imagekit.io/oc2ow6e7b/dex-ezekiel-IxDPZ-AHfoI-unsplash.jpg" alt="manga-library" class="img-fluid">

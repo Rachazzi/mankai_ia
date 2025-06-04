@@ -1,5 +1,10 @@
 <!-- app/views/messages/new.html.erb -->
-<%= simple_form_for [@manga, @message] do |f| %>
-  <%= f.input :content, placeholder: "Ask a question", required: true %>
-  <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
-<% end %>
+<div>
+  <%= simple_form_for [@manga, @message] do |f| %>
+    <%= f.input :content, placeholder: "Ask a question", required: true %>
+    <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<div>
+  <%= link_to "Back to home", root_path, class: "btn btn-magic text-center"  %>
+</div>

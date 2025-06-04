@@ -1,1 +1,14 @@
-<h1>RESPONSE</h1>
+<div class="container">
+<div>
+<p><strong>Message initial:</strong></p>
+<p><%= @message.content %></p>
+
+<% if @message.response.present? %>
+  <p><strong>Réponse :</strong></p>
+  <p><%= markdown(@message.response) %></p>
+<% else %>
+  <p>Pas encore de réponse.</p>
+<% end %>
+  </div>
+  <%= link_to "back to messages", messages_path, class: "btn btn-magic text-center"  %>
+</div>

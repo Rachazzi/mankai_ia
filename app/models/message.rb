@@ -1,4 +1,4 @@
 class Message < ApplicationRecord
-  belongs_to :manga
+  belongs_to :chat
   validates :content, presence: true
 end

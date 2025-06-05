@@ -14,24 +14,36 @@ class ChatsController < ApplicationController
   end
 
   def show
-    # Récupére l'id du chat passé dans l'URL
-    @chat = Chat.find(params[:id])
-    # Ordonne les messages en ordre croissant en fonction de leur création
-    @messages = @chat.messages.order(:created_at)
-    # Permet de d'instancié un nouveau message
-    @message = Message.new
+  @chat = Chat.find(params[:id])
+  @message = Message.new
   end
 
   def create
-    @chat = Chat.new(title: "Untitled")
-    @chat.user = current_user
+    @chat = Chat.new(title: "Untitled", model_id: "gpt-4o-mini") # ou le modèle que vous voulez utiliser
 
-    @chat.manga = Manga.find_by(id: params[:manga_id]) if params[:manga_id]
+    if params[:manga_id].present?
+      @manga = Manga.find_by(id: params[:manga_id])
+      @chat.manga = @manga if @manga
+    end
+
+    @chat.user = current_user
 
     if @chat.save
       redirect_to chat_path(@chat)
     else
-      render :index, status: :unprocessable_entity
+      prepare_index_variables
+      render :index
+    end
+  end
+
+  private
+
+  def prepare_index_variables
+    if params[:manga_id]
+      @manga = Manga.find_by(id: params[:manga_id])
+      @chats = current_user.chats.where(manga: @manga)
+    else
+      @chats = current_user.chats.where(manga: nil)
     end
   end
 end

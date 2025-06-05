@@ -16,26 +16,28 @@ class MessagesController < ApplicationController
 
   def create
     @chat = Chat.find(params[:chat_id])
-    @manga = @chat.manga
-    @message = Message.new(message_params.merge(role: "user", chat: @chat, user: current_user))
-    if @message.save
-      build_conversation_history
-      @response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: @response.content, chat: @chat)
+    @manga = @chat.manga  # Décommentez cette ligne
+    @message = Message.new(message_params.merge(role: "user", chat: @chat))
+    if @message.valid? # don't call `save` anymore
+      @chat.with_instructions(instructions).ask(@message.content)
+      if @chat.title == "Untitled"
+        @chat.generate_title_from_first_message
+      end
       redirect_to chat_path(@chat)
-    else
-      @messages = @chat.messages.order(:created_at)
-      render "chats/show", status: :unprocessable_entity
     end
-    end
+  end
 
   def show
     @message = Message.find(params[:id])
   end
 
 private
+  def message_params
+    params.require(:message).permit(:content)
+  end
 
   def manga_context
+    return nil unless @manga
     "Here is the context of the manga: #{@manga.content}."
   end
 
@@ -44,9 +46,10 @@ private
   end
 
   def build_conversation_history
-    @ruby_llm_chat = RubyLLM.chat
-    @chat.messages.each do |message|
-      @ruby_llm_chat.add_message(message)
+  model = @chat.model_id || "gpt-4o-mini" # valeur par défaut
+  @ruby_llm_chat = RubyLLM.chat(model: model)
+  @chat.messages.each do |message|
+    @ruby_llm_chat.add_message(message)
     end
   end
 end

@@ -1,4 +1,7 @@
 class Message < ApplicationRecord
-  belongs_to :chat
-  validates :content, presence: true
+  acts_as_message
+
+  validates :content, presence: true, length: { minimum: 10, maximum: 1000 }, if: -> { role == "user" }
+  validates :role, presence: true
+  validates :chat, presence: true
 end

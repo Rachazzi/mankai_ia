@@ -1,1 +1,13 @@
-<h1>INDEX</h1>
+<div class="container">
+<h1>Tous les mangas</h1>
+
+<%= link_to "back to home", root_path, class: "btn btn-magic text-center" %>
+<hr>
+<% @mangas.each do |manga| %>
+
+  <%= link_to manga.title, manga_path(manga) %>
+  <hr>
+
+<% end %>
+<%== pagy_nav(@pagy) %>
+</div>

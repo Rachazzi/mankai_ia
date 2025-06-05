@@ -1,1 +1,21 @@
-<h1>Show</h1>
+<div class="container mt-5">
+  <div class="row">
+    <!-- Colonne image -->
+    <div class="col-md-4">
+      <img src="<%= @manga.image_url %>" alt="<%= @manga.title %>" class="img-fluid rounded shadow">
+    </div>
+
+    <!-- Colonne infos -->
+    <div class="col-md-8">
+      <h1><%= @manga.title %></h1>
+      <hr>
+      <p><strong>English Title:</strong> <%= @manga.title_english %></p>
+      <p><strong>Genre:</strong> <%= @manga.genre %></p>
+      <p><strong>Status:</strong> <%= @manga.status %></p>
+      <p><strong>Chapters:</strong> <%= @manga.chapters %></p>
+      <p><strong>Volumes:</strong> <%= @manga.volumes %></p>
+      <p><strong>Score:</strong> <%= @manga.score %></p>
+      <p><strong>Synopsis:</strong> <%= @manga.synopsis %></p>
+    </div>
+  </div>
+</div>

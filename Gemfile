@@ -53,6 +53,7 @@ gem 'ruby_llm'
 gem "devise"
 gem "faker"
 gem 'redcarpet'
+gem 'pagy'
 
 group :development, :test do
   gem "dotenv-rails"

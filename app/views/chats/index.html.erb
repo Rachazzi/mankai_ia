@@ -1,5 +1,4 @@
-<%# <h1>Discussion pour </h1><%= @manga.title %>
-
+<div class="container">
 <div class="mb-4">
   <% if @chats.any? %>
     <ul>
@@ -13,6 +12,6 @@
 </div>
 
 <%= simple_form_for [@manga, @chat] do |f| %>
-  <%= f.input :title, placeholder: "Poser une question" %>
-  <%= f.button :submit, "Nouvelle discussion", class: "btn btn-magic" %>
+  <%= f.button :submit, "New chat", class: "btn btn-magic" %>
 <% end %>
+</div>

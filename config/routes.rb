@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   resources :mangas, only: [:index, :show, :create, :destroy]
 
-  resources :chats do
-  resources :messages, only: [:new, :create]
+  # creation des routes pour le chat
+  resources :chats, only: :show do
+  resources :messages, only: [:create]
   end
 
   # Defines the root path route ("/")

@@ -1,9 +1,16 @@
 class ChatsController < ApplicationController
   def index
-    # Récupère le manga correspondant à l'id passé dans l'URL
-    @manga = Manga.find(params[:manga_id])
-    # Récupère tous les chats de l'utilisateur liés à ce manga
-    @chats = current_user.chats.where(manga: @manga)
+    if params[:manga_id]
+      @manga = Manga.find_by(id: params[:manga_id])
+      @chats = current_user.chats.where(manga: @manga)
+    else
+      @chats = current_user.chats.where(manga: nil)
+    end
+    @chat = Chat.new
+  end
+
+  def new
+    @chat = Chat.new
   end
 
   def show
@@ -13,5 +20,18 @@ class ChatsController < ApplicationController
     @messages = @chat.messages.order(:created_at)
     # Permet de d'instancié un nouveau message
     @message = Message.new
+  end
+
+  def create
+    @chat = Chat.new(title: "Untitled")
+    @chat.user = current_user
+
+    @chat.manga = Manga.find_by(id: params[:manga_id]) if params[:manga_id]
+
+    if @chat.save
+      redirect_to chat_path(@chat)
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 end

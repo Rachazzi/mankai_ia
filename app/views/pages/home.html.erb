@@ -8,9 +8,10 @@
   <br>
   <%# lien pour envoyer l'user vers le chat %>
   <div>
-  <%= link_to "Start a new chat ✨", new_message_path(@manga), class: "btn btn-magic btn-lg text-center m-3" %>
+  <%= link_to "Start a new chat ✨", new_chat_path(@chat), class: "btn btn-magic btn-lg text-center m-3" %>
   <%# lien pour envoyer l'user vers tous les messages %>
-  <%= link_to "Show all messages", messages_path, class: "btn btn-magic btn-lg text-center m-3" %>
+  <%= link_to "Show all manga", mangas_path, class: "btn btn-magic btn-lg text-center m-3" %>
+  <%= link_to "Show all chat", chats_path, class: "btn btn-magic btn-lg text-center m-3" %>
   </div>
 </div>
   <br>

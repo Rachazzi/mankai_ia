@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :mangas, only: [:index, :show, :create, :destroy]
 
   # creation des routes pour le chat
-  resources :chats, only: :show do
+  resources :chats, only: [:show, :index ] do
   resources :messages, only: [:create]
   end
 

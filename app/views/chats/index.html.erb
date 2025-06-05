@@ -1,0 +1,18 @@
+<%# <h1>Discussion pour </h1><%= @manga.title %>
+
+<div class="mb-4">
+  <% if @chats.any? %>
+    <ul>
+      <% @chats.each do |chat| %>
+        <li><%= link_to chat.title, chat_path(chat) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    Pas de discussion actuellement pour ce manga.
+  <% end %>
+</div>
+
+<%= simple_form_for [@manga, @chat] do |f| %>
+  <%= f.input :title, placeholder: "Poser une question" %>
+  <%= f.button :submit, "Nouvelle discussion", class: "btn btn-magic" %>
+<% end %>

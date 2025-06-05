@@ -1,51 +1,33 @@
 class MessagesController < ApplicationController
   def index
     @messages = Message.all
-
   end
-
-
   def new
     @message = Message.new
   end
 
   SYSTEM_PROMPT = <<~PROMPT
-  Tu es un spécialiste des mangas.
-
-  Je suis un fan de manga novice, et je cherche à découvrir de nouveaux mangas.
-  Pour m'aider à découvrir de nouveaux ouvrages, présente-moi 3 mangas sous le format suivant, en Markdown :
-
-  1. **Titre** : _Nom du manga_
-     **Genre** : _Action / Fantastique / Autre_
-     **Description** : Une courte description ici.
-
-  2. **Titre** : _..._
-     **Genre** : _..._
-     **Description** : _..._
-
-  3. **Titre** : _..._
-     **Genre** : _..._
-     **Description** : _..._
-
-   La réponse doit être formatée en **Markdown**.
-PROMPT
+    Tu es un spécialiste des mangas.
+    Tu réponds aux questions d'un fan de manga novice.
+    Pour aider l'utilisateur à découvrir de nouveaux ouvrages, présente-lui 2 à 3 manga adapté à son profil.
+    Si l'utilisateur pose une question précise sur un manga, donne-lui une description personnalisée et adaptée à sa demande.
+    Donne lui des informations clair et pertinantes et réponds toujours en français.
+  PROMPT
 
   def create
-    @manga = Manga.create()
-    @message = Message.new(role: "user", content: params[:message][:content], manga: @manga)
-
+    @chat = Chat.find(params[:chat_id])
+    @manga = @chat.manga
+    @message = Message.new(message_params.merge(role: "user", chat: @chat, user: current_user))
     if @message.save
-      @chat = RubyLLM.chat
-      response = @chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
-
-      @message.update(response: response.content)
-
-      redirect_to message_path(@message)
+      build_conversation_history
+      @response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      Message.create(role: "assistant", content: @response.content, chat: @chat)
+      redirect_to chat_path(@chat)
     else
-      render :new
+      @messages = @chat.messages.order(:created_at)
+      render "chats/show", status: :unprocessable_entity
     end
-  end
-
+    end
 
   def show
     @message = Message.find(params[:id])
@@ -59,5 +41,12 @@ private
 
   def instructions
     [SYSTEM_PROMPT, manga_context].compact.join("\n\n")
+  end
+
+  def build_conversation_history
+    @ruby_llm_chat = RubyLLM.chat
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
   end
 end

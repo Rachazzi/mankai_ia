@@ -6,13 +6,13 @@
   <% if message.role == "user" %>
     <div class="d-flex justify-content-end mb-2">
       <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-        <%= markdown(message.content) %>
+        <%= (message.content) %>
       </div>
     </div>
   <% elsif message.role == "assistant" %>
     <div class="d-flex justify-content-start mb-5">
       <div class="px-3 pb-0 pt-3">
-        <%= markdown(message.content) %>
+        <%= (message.content) %>
       </div>
     </div>
   <% end %>

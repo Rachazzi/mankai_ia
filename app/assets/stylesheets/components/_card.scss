@@ -1,0 +1,72 @@
+.manga-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .manga-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+  }
+
+  .card-img-top-wrapper {
+    height: 120px;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .manga-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+  .card-img-placeholder {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .card-img-placeholder i {
+    font-size: 2rem !important;
+  }
+
+  .card-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 576px) {
+    .col-12 {
+      margin-bottom: 1rem;
+    }
+  }

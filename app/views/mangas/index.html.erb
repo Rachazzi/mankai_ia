@@ -1,19 +1,63 @@
 <div class="container background-grey">
-<h1 class="text-center pt-5">Tous les mangas</h1>
+  <h1 class="text-center pt-5">Tous les mangas</h1>
 
-<%= link_to "back to home", root_path, class: "btn btn-magic text-center my-3" %>
-<hr>
-<% @mangas.each do |manga| %>
-
-  <%= link_to manga.title, manga_path(manga), class: "link" %>
+  <%= link_to "back to home", root_path, class: "btn btn-magic text-center my-3" %>
   <hr>
 
-<% end %>
+  <!-- Grid container pour les cards -->
+  <div class="row g-4 my-4">
+    <% @mangas.each do |manga| %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm manga-card">
+          <!-- Image du manga (si disponible) -->
+          <% if manga.image_url.present? %>
+            <div class="card-img-top-wrapper">
+              <%= image_tag manga.image_url, class: "card-img-top", alt: manga.title %>
+            </div>
+          <% else %>
+            <div class="card-img-placeholder">
+              <i class="fas fa-book fa-2x text-muted"></i>
+            </div>
+          <% end %>
 
-<div class="container text-center">
-  <nav class="nav-page pb-2">
-  <%== pagy_nav(@pagy) %>
-</nav>
-</div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-truncate" title="<%= manga.title %>">
+              <%= manga.title %>
+            </h5>
 
+            <!-- Informations supplémentaires si disponibles -->
+
+            <% if manga.genre.present? %>
+              <p class="card-text text-muted small mb-2">
+                <i class="fas fa-tag"></i> <%= manga.genre %>
+              </p>
+            <% end %>
+
+
+            <!-- Bouton en bas de la card -->
+            <div class="mt-auto">
+              <%= link_to "Voir détails", manga_path(manga),
+                  class: "btn btn-primary btn-sm w-100" %>
+            </div>
+          </div>
+
+          <!-- Badge ou statut si disponible -->
+          <% if manga.status.present? %>
+            <div class="card-footer bg-transparent border-0 py-2">
+              <span class="badge bg-secondary">
+                <%= manga.status %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination -->
+  <div class="container text-center">
+    <nav class="nav-page pb-2">
+      <%== pagy_nav(@pagy) %>
+    </nav>
+  </div>
 </div>

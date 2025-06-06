@@ -1,18 +1,18 @@
-<div class="container">
+<div class="container background-grey">
 <h3><%= @chat.title %> </h3>
 <div><%= link_to "back to all chats", chats_path, class: "btn btn-magic"%></div>
 <hr>
 <% @chat.messages.each do |message| %>
   <% if message.role == "user" %>
     <div class="d-flex justify-content-end mb-2">
-      <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-        <%= (message.content if message.content.present?) %>
+      <div class="bulle-purple px-3 pb-0 pt-3 rounded-pill">
+        <%= markdown(message.content) %>
       </div>
     </div>
   <% elsif message.role == "assistant" %>
     <div class="d-flex justify-content-start mb-5">
       <div class="px-3 pb-0 pt-3">
-        <%= (message.content if message.content.present?) %>
+        <%= markdown(message.content) %>
       </div>
     </div>
   <% end %>

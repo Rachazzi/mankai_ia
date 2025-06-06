@@ -1,0 +1,30 @@
+.background-grey {
+  background-color: $background;
+  color: $on-background;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: $on-background;
+  transition: transform 0.2s ease;
+
+  &:hover{
+    color: $secondary-purple;
+    transform: scale(1.1);
+  }
+}
+
+.nav-page {
+  display: inline-block;
+  text-decoration: none;
+  color: $on-background;
+  transition: transform 0.2s ease;
+
+  &:hover{
+    color: $secondary-purple;
+    transform: scale(1.2);
+  }
+}

@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container background-grey">
 <div class="mb-4">
   <% if @chats.any? %>
-    <ul>
+    <ul class="ul-style pt-3">
       <% @chats.each do |chat| %>
-        <li><%= link_to chat.title, chat_path(chat) %></li>
+        <li><%= link_to chat.title, chat_path(chat), class: "link my-2 ps-5" %></li>
       <% end %>
     </ul>
   <% else %>
@@ -11,7 +11,10 @@
   <% end %>
 </div>
 
-<%= simple_form_for [@manga, @chat] do |f| %>
-  <%= f.button :submit, "New chat", class: "btn btn-magic" %>
-<% end %>
+<div class="container">
+  <%= simple_form_for [@manga, @chat] do |f| %>
+    <%= f.button :submit, "New chat", class: "btn btn-magic" %>
+  <% end %>
+</div>
+
 </div>

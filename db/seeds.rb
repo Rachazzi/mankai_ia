@@ -39,7 +39,7 @@ def create_manga(manga_data)
   Manga.find_or_create_by(jikan_id: manga_data['mal_id']) do |manga|
     manga.title = manga_data['title']
     manga.title_english = manga_data['title_english']
-    manga.genre = manga_data ['genre']
+    manga.genre = manga_data ['genres']
     manga.synopsis = manga_data['synopsis']&.truncate(1000) # Limiter la taille
     manga.status = manga_data['status']
     manga.chapters = manga_data['chapters']
@@ -56,7 +56,7 @@ end
 total_created = 0
 total_errors = 0
 page = 1
-max_manga = 100
+max_manga = 5
 
 puts "📚 Récupération de #{max_manga} mangas..."
 

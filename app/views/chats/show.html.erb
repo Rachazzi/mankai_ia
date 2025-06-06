@@ -6,13 +6,13 @@
   <% if message.role == "user" %>
     <div class="d-flex justify-content-end mb-2">
       <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-        <%= (message.content) %>
+        <%= (message.content if message.content.present?) %>
       </div>
     </div>
   <% elsif message.role == "assistant" %>
     <div class="d-flex justify-content-start mb-5">
       <div class="px-3 pb-0 pt-3">
-        <%= (message.content) %>
+        <%= (message.content if message.content.present?) %>
       </div>
     </div>
   <% end %>

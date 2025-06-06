@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @manga = @chat.manga  # Décommentez cette ligne
     @message = Message.new(message_params.merge(role: "user", chat: @chat))
     if @message.valid? # don't call `save` anymore
-      @chat.with_instructions(instructions).ask(@message.content)
+      @chat.with_tool(MangaFinderTool).with_instructions(instructions).ask(@message.content)
       if @chat.title == "Untitled"
         @chat.generate_title_from_first_message
       end

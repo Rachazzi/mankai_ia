@@ -4,7 +4,7 @@ class MangaFinderTool < RubyLLM::Tool
 
   def execute(title:)
     @manga = Manga.find_by(title: title)
-    @manga.as_json(only: :title).merge(url: manga_url)
+    @manga.as_json(only: [:title, :image_url]).merge(url: manga_url)
   rescue => e
     { error: e.message }
   end

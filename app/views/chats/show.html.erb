@@ -1,5 +1,8 @@
 <div class="container background-grey">
-<h3 class="pt-4"><%= @chat.title %></h3>
+
+<h3><%= @chat&.title %> </h3>
+<div><%= link_to "back to all chats", chats_path, class: "btn btn-magic"%></div>
+
 <hr>
 <% @chat.messages.each do |message| %>
   <% if message.role == "user" %>

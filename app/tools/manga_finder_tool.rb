@@ -1,10 +1,10 @@
 class MangaFinderTool < RubyLLM::Tool
-  description "Finds a manga in the database, based on an image_url"
-  param :image_url, desc: "Manga image_url (e.g. Associations)"
+  description "Finds a manga in the database, based on an title"
+  param :title, desc: "Manga title (e.g. Associations)"
 
-  def execute(image_url:)
-    @manga = Manga.where(image_url: image_url).first
-    @manga.as_json(only: [:image_url, :content]).merge(url: manga_url)
+  def execute(title:)
+    @manga = Manga.find_by(title: title)
+    @manga.as_json(only: :title).merge(url: manga_url)
   rescue => e
     { error: e.message }
   end

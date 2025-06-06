@@ -1,7 +1,21 @@
 .avatar {
   width: 40px;
   border-radius: 50%;
+
+  &:hover {
+    animation: rotate360 2s ease;
+  }
 }
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;

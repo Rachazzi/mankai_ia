@@ -47,7 +47,7 @@ private
   end
 
   def build_conversation_history
-  model = @chat.model_id || "gpt-4o-mini" # valeur par défaut
+  model = @chat.model_id || "gpt-4.1-nano" # valeur par défaut
   @ruby_llm_chat = RubyLLM.chat(model: model)
   @chat.messages.each do |message|
     @ruby_llm_chat.add_message(message)

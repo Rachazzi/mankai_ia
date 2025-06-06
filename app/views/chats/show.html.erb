@@ -1,11 +1,13 @@
 <div class="container background-grey">
-<h3><%= @chat.title %> </h3>
+
+<h3><%= @chat&.title %> </h3>
 <div><%= link_to "back to all chats", chats_path, class: "btn btn-magic"%></div>
+
 <hr>
 <% @chat.messages.each do |message| %>
   <% if message.role == "user" %>
     <div class="d-flex justify-content-end mb-2">
-      <div class="bulle-purple px-3 pb-0 pt-3 rounded-pill">
+      <div class="bulle-purple px-3 pb-0 pt-3 rounded-pill mt-3">
         <%= markdown(message.content) %>
       </div>
     </div>
@@ -19,7 +21,7 @@
 <% end %>
 
 <%= simple_form_for [@chat, @message] do |f| %>
-  <%= f.input :content, placeholder: "Ask a question", required: true, label: false %>
-  <%= f.button :submit, 'Send message', class: "btn btn-magic" %>
+  <%= f.input :content, placeholder: "Ask a question", required: true, label: false, input_html:{class: "form-style"} %>
+  <%= f.button :submit, 'Send message', class: "btn btn-magic mb-5" %>
 <% end %>
 </div>

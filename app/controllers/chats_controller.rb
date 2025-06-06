@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = Chat.new(title: "Untitled", model_id: "gpt-4o-mini") # ou le modèle que vous voulez utiliser
+    @chat = Chat.new(title: "New chat", model_id: "gpt-4o-mini") # ou le modèle que vous voulez utiliser
 
     if params[:manga_id].present?
       @manga = Manga.find_by(id: params[:manga_id])

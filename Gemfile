@@ -54,6 +54,9 @@ gem "devise"
 gem "faker"
 gem 'redcarpet'
 gem 'pagy'
+gem "httplog"
+gem "pry-byebug"
+gem "pry-rails"
 
 group :development, :test do
   gem "dotenv-rails"

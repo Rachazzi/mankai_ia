@@ -39,7 +39,7 @@ def create_manga(manga_data)
   Manga.find_or_create_by(jikan_id: manga_data['mal_id']) do |manga|
     manga.title = manga_data['title']
     manga.title_english = manga_data['title_english']
-    manga.genre = manga_data ['genre']
+    manga.genre = manga_data ['genres/type']
     manga.synopsis = manga_data['synopsis']&.truncate(1000) # Limiter la taille
     manga.status = manga_data['status']
     manga.chapters = manga_data['chapters']
